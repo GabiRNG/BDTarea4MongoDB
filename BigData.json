@@ -1,4 +1,7 @@
-db.usuarios.insertOne({
+use SantiagoT4
+switched to db SantiagoT4
+// Agregamos un solo documento con los datos del estudiante
+db.Usuarios.insertOne({
   "nombre": "Santiago Cepeda",
   "edad": 25,
   "correo": "scepedav@unadvirtual.edu.co",
