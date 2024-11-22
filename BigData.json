@@ -1,0 +1,9 @@
+use SantiagoT4
+switched to db SantiagoT4
+db.usuarios.insertOne({
+  "nombre": "Santiago Cepeda",
+  "edad": 25,
+  "correo": "scepedav@unadvirtual.edu.co",
+  "país": "Colombia",
+  "estado": "Bucaramanga"
+});
