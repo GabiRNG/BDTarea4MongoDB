@@ -1,5 +1,3 @@
-use SantiagoT4
-switched to db SantiagoT4
 db.usuarios.insertOne({
   "nombre": "Santiago Cepeda",
   "edad": 25,
@@ -7,3 +5,4 @@ db.usuarios.insertOne({
   "país": "Colombia",
   "estado": "Bucaramanga"
 });
+
