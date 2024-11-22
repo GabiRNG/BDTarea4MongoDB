@@ -1,6 +1,5 @@
-use SantiagoT4
-switched to db SantiagoT4
-// Agregamos un solo documento con los datos del estudiante
+//INSERCIÓN DE DOCUMENTOS
+//Insertamos a través de código un nuevo usuario con mis datos como estudiante.
 db.Usuarios.insertOne({
   "nombre": "Santiago Cepeda",
   "edad": 25,
@@ -9,3 +8,26 @@ db.Usuarios.insertOne({
   "estado": "Bucaramanga"
 });
 
+//Para ingresar más de un documento a la vez, usamos “InsertMany” de la siguiente forma, agregando dos nuevos documentos con datos de dos cantantes.
+db.Usuarios.insertMany([
+  {
+    "nombre": "Boy George",
+    "edad": 63,
+    "correo": "boygeorge@gmail.com",
+    "país": "Reino Unido",
+    "estado": "Barnehurst"
+  },
+  {
+    "nombre": "Robert Smith",
+    "edad": 65,
+    "correo": "robertsmith@gmail.com",
+    "país": "Reino Unido",
+    "estado": "Blackpool"
+  }
+]);
+
+//SELECCCIÓN
+//
+db.Usuarios.find({ "país": "Reino Unido" });
+
+//
