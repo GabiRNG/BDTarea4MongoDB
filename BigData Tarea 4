@@ -1,0 +1,81 @@
+//INSERCIÓN DE DOCUMENTOS ------------------------------------------------------------------------------------------------
+//Insertamos a través de código un nuevo usuario (documento) con mis datos como estudiante.
+db.Usuarios.insertOne({
+  "nombre": "Santiago Cepeda",
+  "edad": 25,
+  "correo": "scepedav@unadvirtual.edu.co",
+  "país": "Colombia",
+  "estado": "Bucaramanga"
+});
+
+//Para ingresar más de un documento a la vez, usamos “InsertMany” de la siguiente forma, agregando dos nuevos documentos con datos de dos cantantes.
+db.Usuarios.insertMany([
+  {
+    "nombre": "Boy George",
+    "edad": 63,
+    "correo": "boygeorge@gmail.com",
+    "país": "Reino Unido",
+    "estado": "Barnehurst"
+  },
+  {
+    "nombre": "Robert Smith",
+    "edad": 65,
+    "correo": "robertsmith@gmail.com",
+    "país": "Reino Unido",
+    "estado": "Blackpool"
+  }
+]);
+
+//SELECCCIÓN ------------------------------------------------------------------------------------------------
+//Seleccionamos aquellos cuyo país sea “Reino Unido” para obtener solo un par de resultados y demostrar la búsqueda.
+db.Usuarios.find({ "país": "Reino Unido" });
+
+//Buscamos también a los usuarios cuya edad sea de 25 años como yo, para demostrar la búsqueda con otros parámetros.
+db.Usuarios.find({ "edad": 25 });
+
+//ACTUALIZACIÓN ------------------------------------------------------------------------------------------------
+//Para editar un documento, en este caso editaremos la información de Boy George que agregamos antes, cambiando su edad a 30 años y su país a Colombia. 
+db.Usuarios.updateOne(
+  { "nombre": "Boy George" }, // Busca al usuario específico
+  { 
+    $set: { 
+      "edad": 30, // Nueva edad
+      "país": "Colombia" // Nuevo país
+    } 
+  }
+);
+
+//ELIMINACIÓN ------------------------------------------------------------------------------------------------
+//Para la eliminación, vamos a remover el documento de Robert Smith. Simplemente eliminamos cualquier usuario que coincida con el nombre, solo uno en este caso. 
+db.Usuarios.deleteOne({ "nombre": "Robert Smith" });
+
+//CONSULTAS CON FILTROS Y OPERADORES ------------------------------------------------------------------------------------------------
+//Fltro OR. Para OR, buscamos usuarios que sean de México O tengan 25 años. Para esto aplicamos el comando find, estableciendo las dos condiciones del filtro.
+db.Usuarios.find({ $or: [{ "país": "México" }, { "edad": 25 }] });
+
+//Filtro negativo. Para un filtro negativo, establecemos un criterio de búsqueda, en este caso, de nuevo el país México, pero en este caso, obtendremos los usuarios que NO sean de dicho país.
+db.Usuarios.find({ "país": { $ne: "México" } });
+
+//Operadores. Para las consultas con operadores, buscaremos usuarios con edades entre los 20 y 40 años.
+db.Usuarios.find({ "edad": { $gte: 20, $lte: 40 } });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
