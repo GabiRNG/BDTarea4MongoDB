@@ -1,4 +1,4 @@
-//INSERCIÓN DE DOCUMENTOS ------------------------------------------------------------------------------------------------
+//INSERCIÓN DE DOCUMENTOS ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //Insertamos a través de código un nuevo usuario (documento) con mis datos como estudiante.
 db.Usuarios.insertOne({
   "nombre": "Santiago Cepeda",
@@ -26,14 +26,16 @@ db.Usuarios.insertMany([
   }
 ]);
 
-//SELECCCIÓN ------------------------------------------------------------------------------------------------
+
+//SELECCCIÓN ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //Seleccionamos aquellos cuyo país sea “Reino Unido” para obtener solo un par de resultados y demostrar la búsqueda.
 db.Usuarios.find({ "país": "Reino Unido" });
 
 //Buscamos también a los usuarios cuya edad sea de 25 años como yo, para demostrar la búsqueda con otros parámetros.
 db.Usuarios.find({ "edad": 25 });
 
-//ACTUALIZACIÓN ------------------------------------------------------------------------------------------------
+
+//ACTUALIZACIÓN ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //Para editar un documento, en este caso editaremos la información de Boy George que agregamos antes, cambiando su edad a 30 años y su país a Colombia. 
 db.Usuarios.updateOne(
   { "nombre": "Boy George" }, // Busca al usuario específico
@@ -45,11 +47,13 @@ db.Usuarios.updateOne(
   }
 );
 
-//ELIMINACIÓN ------------------------------------------------------------------------------------------------
+
+//ELIMINACIÓN ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //Para la eliminación, vamos a remover el documento de Robert Smith. Simplemente eliminamos cualquier usuario que coincida con el nombre, solo uno en este caso. 
 db.Usuarios.deleteOne({ "nombre": "Robert Smith" });
 
-//CONSULTAS CON FILTROS Y OPERADORES ------------------------------------------------------------------------------------------------
+
+//CONSULTAS CON FILTROS Y OPERADORES ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //Fltro OR. Para OR, buscamos usuarios que sean de México O tengan 25 años. Para esto aplicamos el comando find, estableciendo las dos condiciones del filtro.
 db.Usuarios.find({ $or: [{ "país": "México" }, { "edad": 25 }] });
 
@@ -60,22 +64,18 @@ db.Usuarios.find({ "país": { $ne: "México" } });
 db.Usuarios.find({ "edad": { $gte: 20, $lte: 40 } });
 
 
+//CONSULTAS DE AGREGACIÓN ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//CONTAR. Podemos contar la cantidad de usuarios en la tabla (o documentos).
+db.usuarios.countDocuments();
 
+//SUMA. Para sumar, en este caso podemos sumar las edades de todos los usuarios, usando el comando “sum” para sumar los valores de un campo dado.
+db.Usuarios.aggregate([
+  { $group: { _id: null, totalEdad: { $sum: "$edad" } } }
+]);
 
+//PROMEDIAR. Por otro lado, promediar se hace de una forma similar a la suma, usando el comando “avg” para determinar el promedio de un campo dado.
+db.Usuarios.aggregate([
+  { $group: { _id: null, promedioEdad: { $avg: "$edad" } } }
+]);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Santiago Cepeda Vargas - Grupo 202016911_17
